@@ -1,0 +1,32 @@
+### Auth role user
+POST https://localhost/authentication_token
+accept: application/json
+Content-Type: application/json
+
+{
+    "email": "user@user.fr",
+    "password": "test"
+}
+
+> {%
+     client.global.set("auth_token_user", response.body.token);
+%}
+###
+
+### get collection pizza
+GET https://localhost/pizzas?page=1
+accept: application/ld+json
+Content-Type: application/json
+Authorization: Bearer {{ auth_token_user }}
+###
+
+### get collection pizza
+GET https://localhost/pizzas/20
+accept: application/ld+json
+Content-Type: application/json
+Authorization: Bearer {{ auth_token_user }}
+###
+
+
+
+
